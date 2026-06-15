@@ -10,8 +10,9 @@ type Buku struct {
 
 type DaftarBuku [nMax]Buku
 
-func DaftarkanBuku(pustaka *DaftarBuku, n int) {
-	for i := 0; i < n; i++ {
+func DaftarkanBuku(pustaka *DaftarBuku, n *int) {
+	fmt.Scan(n)
+	for i := 0; i < *n; i++ {
 		fmt.Scan(
 			&pustaka[i].id,
 			&pustaka[i].judul,
@@ -31,12 +32,11 @@ func CetakTerfavorit(pustaka DaftarBuku, n int) {
 			idxMax = i
 		}
 	}
-	fmt.Println(
-		pustaka[idxMax].judul,
-		pustaka[idxMax].penulis,
-		pustaka[idxMax].penerbit,
-		pustaka[idxMax].tahun,
-	)
+	fmt.Println("Buku Terfavorit:")
+	fmt.Println("Judul    :", pustaka[idxMax].judul)
+	fmt.Println("Penulis  :", pustaka[idxMax].penulis)
+	fmt.Println("Penerbit :", pustaka[idxMax].penerbit)
+	fmt.Println("Tahun    :", pustaka[idxMax].tahun)
 }
 
 func UrutBuku(pustaka *DaftarBuku, n int) {
@@ -61,8 +61,9 @@ func Cetak5Terbaru(pustaka DaftarBuku, n int) {
 	} else {
 		batas = 5
 	}
+	fmt.Println("5 Buku dengan Rating Tertinggi:")
 	for i := 0; i < batas; i++ {
-		fmt.Println(pustaka[i].judul)
+		fmt.Println(i+1, ".", pustaka[i].judul)
 	}
 }
 
@@ -82,17 +83,26 @@ func CariBuku(pustaka DaftarBuku, n int, r int) {
 			kiri = tengah + 1
 		}
 	}
-
 	if ketemu {
-		fmt.Println(
-			pustaka[tengah].judul,
-			pustaka[tengah].penulis,
-			pustaka[tengah].penerbit,
-			pustaka[tengah].tahun,
-			pustaka[tengah].eksemplar,
-			pustaka[tengah].rating,
-		)
+		fmt.Println("Data Buku Ditemukan:")
+		fmt.Println("Judul     :", pustaka[tengah].judul)
+		fmt.Println("Penulis   :", pustaka[tengah].penulis)
+		fmt.Println("Penerbit  :", pustaka[tengah].penerbit)
+		fmt.Println("Tahun     :", pustaka[tengah].tahun)
+		fmt.Println("Eksemplar :", pustaka[tengah].eksemplar)
+		fmt.Println("Rating    :", pustaka[tengah].rating)
 	} else {
 		fmt.Println("Tidak ada buku dengan rating seperti itu")
 	}
+}
+
+func main() {
+	var pustaka DaftarBuku
+	var n, ratingCari int
+	DaftarkanBuku(&pustaka, &n)
+	fmt.Scan(&ratingCari)
+	CetakTerfavorit(pustaka, n)
+	UrutBuku(&pustaka, n)
+	Cetak5Terbaru(pustaka, n)
+	CariBuku(pustaka, n, ratingCari)
 }

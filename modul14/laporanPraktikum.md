@@ -61,20 +61,13 @@ func main() {
 
 ##### Output 
 ![Screenshot Output Unguided 1](https://github.com/frzhwaa/109082500200_ZirlynailaFairuzahwa/blob/main/modul14/output/soal1selection.png)
-#### Program tersebut digunakan untuk mengurutkan nomor rumah kerabat Hercules pada setiap daerah secara membesar (ascending) menggunakan algoritma Selection Sort. Program menggunakan tipe bentukan array bertipe integer untuk menyimpan nomor rumah kerabat pada setiap daerah. Pada proses pembacaan data, program membaca banyak daerah n. Untuk setiap daerah, program membaca banyak rumah m dan nomor rumah kerabat sebanyak m buah. Pada fungsi Selection Sort, program mencari nilai terkecil pada bagian array yang belum terurut, kemudian menukarnya dengan elemen paling kiri pada bagian tersebut. Proses ini diulang sampai seluruh data terurut membesar.
-#### Setelah proses pengurutan selesai, program menampilkan seluruh nomor rumah yang telah terurut secara ascending.
-#### Misalkan input yang diberikan adalah:
-#### 1
-#### 5 2 1 7 9 13
-#### Prosesnya yaitu:
-#### Data awal:
-#### 2 1 7 9 13
-#### Cari nilai terkecil → 1
-#### Tukar dengan elemen pertama
-#### 1 2 7 9 13
-#### Sisa data sudah terurut
-#### Jadi outputnya adalah:
-#### 1 2 7 9 13
+#### ...
+
+## Unguided
+
+### 2 Selection. Belakangan diketahui ternyata Hercules itu tidak berani menyeberang jalan, maka selalu diusahakan agar hanya menyeberang jalan sesedikit mungkin, hanya diujung jalan. Karena nomor rumah sisi kiri jalan selalu ganjil dan sisi kanan jalan selalu genap, maka buatlah program kerabat dekat yang akan menampilkan nomor rumah mulai dari nomor yang ganjil lebih dulu terurut membesar dan kemudian menampilkan nomor rumah dengan nomor genap terurut mengecil.
+### Format Masukan masih persis sama seperti sebelumnya.
+### Keluaran terdiri dari n baris, yaitu rangkaian rumah kerabatnya terurut membesar untuk nomor ganjil, diikuti dengan terurut mengecil untuk nomor genap, di masing-masing daerah.
 
 #### soal2selection.go
 
@@ -149,7 +142,7 @@ func main() {
 
 ##### Output 
 ![Screenshot Output Unguided 2](https://github.com/frzhwaa/109082500200_ZirlynailaFairuzahwa/blob/main/modul14/output/soal2selection.png)
-#### Program tersebut digunakan untuk menampilkan nomor rumah ganjil terlebih dahulu secara membesar, kemudian nomor rumah genap secara mengecil. Program menggunakan dua buah array, yaitu array ganjil dan array genap. Pada saat pembacaan data, program memeriksa setiap nomor rumah. Jika nomor rumah ganjil maka disimpan ke array ganjil, sedangkan jika genap disimpan ke array genap. Kedua array kemudian diurutkan menggunakan Selection Sort secara ascending. Pada saat pencetakan hasil, array ganjil dicetak dari awal hingga akhir sehingga tetap ascending, sedangkan array genap dicetak dari akhir ke awal sehingga menjadi descending.
+#### ...
 
 ## Unguided 
 
@@ -225,7 +218,7 @@ func main() {
 
 ##### Output 
 ![Screenshot Output Unguided 3](https://github.com/frzhwaa/109082500200_ZirlynailaFairuzahwa/blob/main/modul14/output/soal1insertion.png)
-#### Program tersebut digunakan untuk mencari nilai median dari sekumpulan data yang telah dibaca. Program menggunakan array integer untuk menyimpan seluruh data yang masuk. Setiap kali program membaca angka 0, seluruh data yang telah tersimpan diurutkan terlebih dahulu, kemudian median dihitung dan ditampilkan. Jika jumlah data ganjil, median adalah data yang berada tepat di tengah. Jika jumlah data genap, median adalah rata-rata dari dua data tengah dan dibulatkan ke bawah.
+#### ....
 
 ## Unguided 
 
@@ -277,8 +270,9 @@ type Buku struct {
 
 type DaftarBuku [nMax]Buku
 
-func DaftarkanBuku(pustaka *DaftarBuku, n int) {
-	for i := 0; i < n; i++ {
+func DaftarkanBuku(pustaka *DaftarBuku, n *int) {
+	fmt.Scan(n)
+	for i := 0; i < *n; i++ {
 		fmt.Scan(
 			&pustaka[i].id,
 			&pustaka[i].judul,
@@ -298,12 +292,11 @@ func CetakTerfavorit(pustaka DaftarBuku, n int) {
 			idxMax = i
 		}
 	}
-	fmt.Println(
-		pustaka[idxMax].judul,
-		pustaka[idxMax].penulis,
-		pustaka[idxMax].penerbit,
-		pustaka[idxMax].tahun,
-	)
+	fmt.Println("Buku Terfavorit:")
+	fmt.Println("Judul    :", pustaka[idxMax].judul)
+	fmt.Println("Penulis  :", pustaka[idxMax].penulis)
+	fmt.Println("Penerbit :", pustaka[idxMax].penerbit)
+	fmt.Println("Tahun    :", pustaka[idxMax].tahun)
 }
 
 func UrutBuku(pustaka *DaftarBuku, n int) {
@@ -328,8 +321,9 @@ func Cetak5Terbaru(pustaka DaftarBuku, n int) {
 	} else {
 		batas = 5
 	}
+	fmt.Println("5 Buku dengan Rating Tertinggi:")
 	for i := 0; i < batas; i++ {
-		fmt.Println(pustaka[i].judul)
+		fmt.Println(i+1, ".", pustaka[i].judul)
 	}
 }
 
@@ -349,23 +343,32 @@ func CariBuku(pustaka DaftarBuku, n int, r int) {
 			kiri = tengah + 1
 		}
 	}
-
 	if ketemu {
-		fmt.Println(
-			pustaka[tengah].judul,
-			pustaka[tengah].penulis,
-			pustaka[tengah].penerbit,
-			pustaka[tengah].tahun,
-			pustaka[tengah].eksemplar,
-			pustaka[tengah].rating,
-		)
+		fmt.Println("Data Buku Ditemukan:")
+		fmt.Println("Judul     :", pustaka[tengah].judul)
+		fmt.Println("Penulis   :", pustaka[tengah].penulis)
+		fmt.Println("Penerbit  :", pustaka[tengah].penerbit)
+		fmt.Println("Tahun     :", pustaka[tengah].tahun)
+		fmt.Println("Eksemplar :", pustaka[tengah].eksemplar)
+		fmt.Println("Rating    :", pustaka[tengah].rating)
 	} else {
 		fmt.Println("Tidak ada buku dengan rating seperti itu")
 	}
+}
+
+func main() {
+	var pustaka DaftarBuku
+	var n, ratingCari int
+	DaftarkanBuku(&pustaka, &n)
+	fmt.Scan(&ratingCari)
+	CetakTerfavorit(pustaka, n)
+	UrutBuku(&pustaka, n)
+	Cetak5Terbaru(pustaka, n)
+	CariBuku(pustaka, n, ratingCari)
 }
 ```
 ### Output Unguided :
 
 ##### Output 
 ![Screenshot Output Unguided 4](https://github.com/frzhwaa/109082500200_ZirlynailaFairuzahwa/blob/main/modul14/output/soal2insertion.png)
-#### Program tersebut digunakan untuk membaca sekumpulan bilangan bulat non-negatif, mengurutkannya menggunakan Insertion Sort, kemudian memeriksa apakah selisih antar data yang berurutan selalu sama. Program menggunakan array integer untuk menyimpan seluruh data yang dibaca. Input berhenti ketika pengguna memasukkan bilangan negatif. Pada fungsi Insertion Sort, setiap elemen disisipkan ke posisi yang tepat sehingga seluruh data menjadi terurut membesar. Setelah data terurut, program menghitung selisih antara dua data pertama. Selanjutnya program memeriksa apakah seluruh pasangan data berikutnya memiliki selisih yang sama.
+#### ...
