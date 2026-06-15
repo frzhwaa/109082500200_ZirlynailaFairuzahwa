@@ -63,7 +63,7 @@ func Cetak5Terbaru(pustaka DaftarBuku, n int) {
 	}
 	fmt.Println("5 Buku dengan Rating Tertinggi:")
 	for i := 0; i < batas; i++ {
-		fmt.Println(i+1, ".", pustaka[i].judul)
+		fmt.Println(i+1, pustaka[i].judul)
 	}
 }
 
